@@ -1,0 +1,161 @@
+\documentclass{article}  
+\usepackage{float}
+\usepackage[caption = false]{subfig}
+\usepackage[final]{graphicx}
+\usepackage{float}
+\usepackage[margin=1.1in]{geometry}
+\geometry{a4paper}
+\title{\Huge Analysis of Jets in Monte Carlo Events Using Rivet}
+\author{\Large Aditya Verma\\ Rutgers University\\ av558@scarletmail.rutgers.edu}
+\date{\today}
+
+\begin{document}
+\maketitle
+\abstract{This report is a summary of the work that I have done and the material I have learnt during the Summer of 2017. I worked with the Rutgers Relativistic Heavy Ion group under Dr. Sevil Salur and under the mentorship of PhD candidate Raghav Kunnawalkam Elayavalli. The aim of my project was to analyse jets and their various properties using Rivet. The events being analysed in this paper are Monte Carlo generated, either locally, or as batch jobs on lxplus at CERN. Using these analyses, my task at hand was to create graphs to realize the data and make predictions for the upcoming sPHENIX project.}
+
+\newpage
+\section{\huge Introduction}
+I am an ECE/CS double major considering a minor in Physics. My interest in Physics is definitely what drove me to seek research in the Physics Department. I approached Prof. Salur with no previous experience in research, albeit with an extremely eager desire to dip my toes into the untested waters of Heavy Ion Physics. As a student of Computer Engineering, I have a significant amount of experience with programming in C++, among other languages, and these skills definitely came in handy for this project.
+\vspace{0.5cm}
+\section{Week 1}
+\subsection{Installation}
+Most of the first week was exhausted in completing the setup and installation of software. The details of the installations are recorded below.
+\subsubsection{ROOT}
+ROOT was a software I had played around with during finals week. However, much to our dismay, I had installed version 5, which doesn't meet the requirements for this project. Therefore we used a number of different techniques to try to install and build ROOT 6, including the traditional configure-make method, and the new cmake method. However, the build always ultimately crashed. On June 6, we visited Alex Pearce's website where he described how to install ROOT 6 on his Mac. Copying exactly his commands (using homebrew), we managed to finally install it.
+
+\subsubsection{JEWEL, lhapdf, PDFsets, Rivet, LaTeX}
+Raghav and I installed these softwares both locally on my computer, as well as on lxplus. The directions are listed very concisely online. An important nuance to remember is how to set the path for these softwares to correctly function and carry out their tasks when called.
+
+\subsection{Tutorials and Learning}
+ROOT: There exist a bunch of ROOT tutorials on Youtube (channel: dai xination) that can be used an initial basic source to understand root.
+Raghav's Github repsitory (rkunnawa) is also a place where one can find ROOT tutorials (https://github.com/rkunnawa/RootTutorial).\\LINUX: Having never used linux before, I began to familiarise myself with the basic commands used in terminal. Trial and error, I found, is the best way to get acclimitized to a new OS.\\\\Raghav helped me and showed me how to make plots using Rivet.
+
+
+\subsection{Readings}
+A thorough review of the standard model of physics is recommended before embarking on any other readings.
+The TWiki created by previous students contains a collection of readings (https://twiki.cern.ch /twiki/bin/viewauth/CMS/HiRutgersGroupPapers). Prof. Salur emailed us a few papers that I began going through.
+The Journal Club was held every thursday where everyone in the group would discuss a common paper. This really helped in acquisition of knowledge for the undergrads, as we got to pick the minds of PhDs, masters, as well as Professors.  
+I created a directory (Helpful Documents) for terms and concepts that I came across in these readings that I couldn't completely comprehend. Each unknown variable was updated with information once I confirmed the concepts and meanings with Raghav, or some other reliable source.
+
+\newpage
+\section{Week 2}
+\subsection{June 7th, 2017- Chris M. and Raghav K.}
+The first informative talk was given on June 7th by Chris as an introduction to QED and QCD. It was an attempt to acquaint us with the commonly used terms in our field of physics research.
+Raghav's talk on the same day had a more centered approach on the type of physics we're required to know for this research project.
+Refer to the Helpful Documents directory to find notes on these talks.
+
+\subsection{June 8th, 2017- Ian L. and Raghav K.}
+Ian's tutorial of terminal was aimed at familiarising us with the bash shell. Meanwhile, Raghav introduced us to root and how to access files through terminal. We learnt what a macro is and coded our first example macro which we analysed by running it through root. By creating histograms by reading from files that Raghav sent us we were able to make the plots seen in Figure \ref{fig:testplots1} and \ref{fig:testplots2}.
+
+\begin{figure}[H]
+\centering
+\subfloat{\includegraphics[width = 2.8in]{test.pdf}} 
+\subfloat{\includegraphics[width = 2.8in]{testplot.pdf}}
+\caption{Plots Generated Using ROOT with Random Entries}
+\label{fig:testplots1}
+\subfloat{\includegraphics[width = 5.6in]{measurement.pdf}}
+\caption{Plots Generated Using ROOT by Reading Existing Files}
+\label{fig:testplots2}
+\end{figure}
+
+\subsection{June 9th, 2017}
+Raghav continued his tutorial of root. We made a histogram and learned the various ways of customizing it.
+I had a one on one rivet tutorial session with Raghav, where we used JEWEL to generate events and analysed them using rivet. I created the plots in Figure \ref{fig:jetvars} to study these generated events.
+\begin{figure}[H]
+\centering
+\subfloat{\includegraphics[width = 2.3in]{jetpT.png}} 
+\subfloat{\includegraphics[width = 2.3in]{jetphi.png}}\\
+\subfloat{\includegraphics[width = 2.3in]{jeteta.png}}
+\subfloat{\includegraphics[width = 2.3in]{njets.png}} 
+\caption{Variables Associated with Jet Analysis}
+\label{fig:jetvars}
+\end{figure}
+
+I noted down the instructions that I would need to carry out the aforementioned tasks in a Rivet and JEWEL help document located in the Helpful Documents directory.
+
+\subsection{June 10th-14th, 2017}
+Once the initial introduction to the projects and the various tools peculiar to these projects was complete, we embarked on our individual learning journeys. I experimented on my own, creating plots using rivet with my own parameters.
+We acquainted ourselves with the physics of jets and the algorithms devised to carry out analyses of jets by reading a number of different papers sent to us by Prof. Salur, as well as Ian and Raghav.
+
+\newpage
+
+\section{Week 3}
+
+\subsection{June 15th-19th, 2017}
+The basis of this project now largely understood, I tried creating more meaningful plots using Rivet. I played around with the various functionalities of different commands to generate plots that served the purpose of quenching my questions. For example, Figure \ref{fig:trackvars} shows the properties of tracks. I was curious as to how the graphs would turn out with no Jet Association criteria, hence the two different colours of plots. As is evident, the cuts applied to this specific event analysis create very observable changes.
+
+\begin{figure}[H]
+\centering
+\subfloat{\includegraphics[width = 2.2in]{trackpT.png}} 
+\subfloat{\includegraphics[width = 2.2in]{trackphi.png}}\\
+\subfloat{\includegraphics[width = 2.2in]{tracketa.png}}
+\subfloat[Number of Tracks Per Jet]{\includegraphics[width = 2.2in]{nTracksPerJet.png}} 
+\caption{Variables Associated with Track Analysis}
+\label{fig:trackvars}
+\end{figure}
+
+The graphs above clearly define and inform the viewer about the tracks that make up, as well as those that aren't associated with the jet. Therefore the next step was to create a graph for the Fragmentation Function ($Z$). Starting out with its basic definition, Raghav allowed me to struggle and figure out the code for myself, hence producing the desired output in Figure \ref{fig:frag}.
+  
+\begin{figure}[H]
+\centering
+\subfloat{\includegraphics[width = 2.0in]{Z.png}} 
+\caption{Fragmentation Function ($Z$)}
+\label{fig:frag}
+\end{figure}
+
+\subsection{June 20th, 2017- Group Update Meeting}
+The group met on June 20th to update each other on the individual progress made in the last two weeks. Each person presented in front of the group, and the floor was open for questions.
+\\
+After the meeting, I tried generating a larger number of events using the Monte Carlo on a server at lxplus, remotely. However, the batch jobs either ran indefinitely, or ran and threw up errors when copying the output files containing the bulk of the data to my cernbox. A service request was submitted to the Batch Jobs IT Department for lxplus.
+Further progress was achieved on the plots replicating those on the sPHENIX proposal (page 34).
+\\The plots mentioned above were those comparing pp and PbPb collision events. However, since I had access merely to locally generated events, I couldn't replicate the graphs until I had the data from the batch jobs running at CERN. Therefore, working with what I had, I created the corresponding plots in \ref{fig:delphi} for the pp collisions only.
+
+\begin{figure}[H]
+\centering
+\subfloat[Assymetry ($A_{J}$) of Leading \& Subleading Jets]{\includegraphics[width = 2.5in]{Aj.png}} 
+\subfloat[$\triangle \phi$ of Leading \& Subleading Jets]{\includegraphics[width = 2.5in]{Delta_Phi.png}}\\
+\subfloat[$p_{T}$ Cutoff For Non-Leading Jets for $I_{AA}$  (Incorrectly made)]{\includegraphics[width = 2.5in]{Iaa.png}}
+\caption{Replicated Correspondences to sPhenix Proposal Graphs for pp Collisions}
+\label{fig:delphi}
+\end{figure}
+
+\subsection{June 21st-22nd, 2017- Journal Club}
+The paper "How Much Information is in a Jet?" was our assigned reading for journal club this week. The paper explored machine learning algorithms that were used to identify and discriminate jets from the background. The observable that the paper proposed was the best to extract maximum information was N-subjettiness ($\tau_{N}^{(\beta)}$). During the journal club meeting, Raghav presented and explained the murky concept embedded in the substance of this paper to us. What I learned from his explanation was that when boosting occurs, the jets produced are much closer to each other, hence hard to identify. Therefore, they manifest as one singular, large jet. However, depending on the value of ($\tau_{N}^{(\beta)}$) for different N, we can infer the total number of subjets. A machine learning algorithm used by the authors claimed to do just this.
+
+\section{Week 4}
+Week 4 was a busy week, due to me having a midterm and a final. Therefore, progress was slowed and less work was done, when compared to previous weeks. In addition, towards the end of the week I had to  visit the Social Security Office, and was unable to come into work.
+
+\subsection{June 23rd, 2017}
+Further work was done with regard to making the sPHENIX plots, as shown in the previous section. I was informed that the code for $I_{AA}$ was wrong (not related to it being a ratio, as I didn't have the results from the batch jobs yet). I got to work on fixing my errors over the weekend.
+
+\subsection{June 26th}
+Having recieved Raghav's thesis draft over the weekend, we started reading it. I identified and informed Raghav of typos that he might have made. I found that he had written 'curtesy' in places where he actually meant to write 'courtesy'.
+
+\subsection{June 27th- Group Update Meeting}
+At this week's update meeting, I presented my plots for sPHENIX.
+Raghav updated us on his side projects that involve machine learning and neural networks. Ian had a long presentatoin of his improvements for unfolding from last week.
+We also went through the propsed President's budget and all the cuts to research funds that might occur.
+\\
+Prof. Salur told us about the DNP conference in Pittsburgh this October, and we immediately got started on our abstracts for it.
+
+\subsection{June 29th, 2017- Journal Club}
+The assigned Journal Club reading for this week was: https://arxiv.org/abs/.1609.03878\\ I found the paper extremely interesting, since it contained a lot of information pertaining to the plots I had been trying to make. It discussed Di-Jet assymetry and the various ways of realizing it through graphs. It focused on a certain observable- $A_{J}$, which was very relevant to my work, since I had been coding the plots for said observable. We also discussed some of the interesting statistics jargon found in the paper.\\
+I worked with Raghav to complete my abstract for the DNP conference. The final product was:
+
+
+\begin{figure}[H]
+\centering
+\subfloat[]{\includegraphics[width = 3in, height= 3.5in]{262573.pdf}} 
+\end{figure}
+
+\section{Conclusion}
+As the first month draws to a close, my project is nearing completion. Once the results from the batch jobs on lxplus are accessible, I will run my analyses on them, and proceed from there.\\\\
+This research was conducted in the summer of my freshman year. As an Electrical and Computer Engineering major, it was my first foray into the realm of physics research. The learning curve posed a daunting challenge. However, patience and perseverance bore sweet fruit.\\
+   I spent the first couple of weeks learning graduate and PhD level concepts of physics. I learnt what a Jet- the main focus of this research, is. A Jet is a collection of particles and their tracks that originate form a quark or a gluon. Furthermore, they serve the function of being internal probes into the sate of matter formed right after collision (QGP). I learnt new programming skills and languages to carry out computational simulations using Monte Carlo event generators. These events were pp and Au+Au collisions. These were skills and frameworks necessarily required to make new predictions for future Jet measurements at RHIC.\\
+   With this arsenal of freshly amassed ability, I coded and generated plots using RIVET on events generated by JEWEL. These plots were used to interpret jet variables such as di-jet asymmetry, the fragmentation function, etc.\\
+   As a corollary, I picked up some essential practices and techniques required for any field of research. Weekly presentations were made by me to update the group on the progress achieved. A daily-updated report on everyday proceedings was fastidiously maintained.
+\\
+I would like to thank Professor Salur for giving me this opportunity, and allowing me to gain the paraphernalia necessary for any research. I was wading into untested waters, since I had never before participated in any such activity. However, this first month was an extremely fruitful and enjoyable experience, and I look forward to working in research, and gaining a lot more of such experiences.
+
+
+\end{document}
