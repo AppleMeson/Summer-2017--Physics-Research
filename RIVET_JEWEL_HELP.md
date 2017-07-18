@@ -18,7 +18,7 @@ NEVENT 10000
 NJOB 97676 # random seed 
 SQRTS 2760 # energy of collision
 PROCESS 'PPJJ' # process type here, it is proton proton jet jet
-# Changing the generation phase space
+#Changing the generation phase space
 PTMIN 30
 PTMAX 500
 ETAMAX 3.0
@@ -34,7 +34,7 @@ go back to terminal, inside JEWEL,
 
 TO VIEW GENERATED EVENTS AND RESULTS, IN TERMINAL DO less <filename>.log ( you can see filename by doing ls -alrth in JEWEL
 
-FOR RIVET
+# FOR RIVET
 
 after doing everything above, go inside ANALYSIS in JEWEL (in terminal)
 type ls
